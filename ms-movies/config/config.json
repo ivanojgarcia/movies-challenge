@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "yapp-user-challenge",
+    "password": "yappChallenge",
+    "database": "yapp-app",
+    "host": "127.0.0.1",
+    "port": "8889",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "yapp-user-challenge",
+    "password": "yappChallenge",
+    "database": "yapp-app",
+    "host": "127.0.0.1",
+    "port": "8889",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "yapp-user-challenge",
+    "password": "yappChallenge",
+    "database": "yapp-app",
+    "host": "127.0.0.1",
+    "port": "8889",
+    "dialect": "mysql"
+  }
+}
