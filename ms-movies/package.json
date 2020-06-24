@@ -1,5 +1,5 @@
 {
-  "name": "Movie-challenge",
+  "name": "movie-challenge",
   "version": "1.0.0",
   "description": "Challenge Backend of movies on NodeJS",
   "main": "app.js",
