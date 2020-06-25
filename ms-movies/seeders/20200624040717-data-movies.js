@@ -6,7 +6,7 @@ module.exports = {
 
       return Promise.all([
         queryInterface.sequelize.query(`
-        INSERT INTO Movies VALUES
+        INSERT INTO movies VALUES
         (1,'Inception','2010','13+','8.8','87%','1','0','0','0','0','Christopher Nolan','Action\,Adventure\,Sci-Fi\,Thriller','United States\,United Kingdom','English\,Japanese\,French','148','2020-06-23 23:49:10','2020-06-23 23:49:10'),
         (2,'The Matrix','1999','18+','8.7','87%','1','0','0','0','0','Lana Wachowski\,Lilly Wachowski','Action\,Sci-Fi','United States','English','136','2020-06-23 23:49:10','2020-06-23 23:49:10'),
         (3,'Avengers: Infinity War','2018','13+','8.5','84%','1','0','0','0','0','Anthony Russo\,Joe Russo','Action\,Adventure\,Sci-Fi','United States','English','149','2020-06-23 23:49:10','2020-06-23 23:49:10'),

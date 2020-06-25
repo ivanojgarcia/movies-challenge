@@ -1,17 +1,17 @@
 {
   "development": {
-    "username": "yapp-user-challenge",
-    "password": "yappChallenge",
+    "username": "postgres",
+    "password": "123456",
     "database": "yapp-app",
     "host": "host.docker.internal",
-    "port": "8889",
-    "dialect": "mysql"
+    "port": "5432",
+    "dialect": "postgres"
   },
   "test": {
     "username": "yapp-user-challenge",
     "password": "yappChallenge",
     "database": "yapp-app",
-    "host": "host.docker.internal",
+    "host": "127.0.0.1",
     "port": "8889",
     "dialect": "mysql"
   },
@@ -19,7 +19,7 @@
     "username": "yapp-user-challenge",
     "password": "yappChallenge",
     "database": "yapp-app",
-    "host": "host.docker.internal",
+    "host": "127.0.0.1",
     "port": "8889",
     "dialect": "mysql"
   }

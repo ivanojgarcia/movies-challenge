@@ -19,19 +19,70 @@ Resources:
       CodeUri: ms-movies/
       Handler: getMovies.lambdaHandler
       Runtime: nodejs12.x
-      # Environment:
-      #   Variables:
-      #     DB_NAME: yapp-app
-      #     DB_USER: yapp-user-challenge
-      #     DB_PASWORD: yappChallenge
-      #     DB_HOST: 127.0.0.1
-      #     DB_PORT: 8889
+      Timeout: 30
+      Environment:
+        Variables:
+          DB_HOST: host.docker.internal #Change the HOST for the server in production
       Events:
         GetMoviesApi:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /getMovies
+            Path: /movie/list
             Method: get
+  CreateMoviesFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      FunctionName: CreateMovies
+      Description: Create movies into DB
+      CodeUri: ms-movies/
+      Handler: createMovies.lambdaHandler
+      Runtime: nodejs12.x
+      Timeout: 30
+      Environment:
+        Variables:
+          DB_HOST: host.docker.internal #Change the HOST for the server in production
+      Events:
+        CreateMoviesApi:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /movie
+            Method: post
+  UpdateMoviesFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      FunctionName: UpdateMovies
+      Description: Update movies into DB
+      CodeUri: ms-movies/
+      Handler: updateMovies.lambdaHandler
+      Runtime: nodejs12.x
+      Timeout: 30
+      Environment:
+        Variables:
+          DB_HOST: host.docker.internal #Change the HOST for the server in production
+      Events:
+        UpdateMoviesApi:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /movie
+            Method: put
+  DeleteMoviesFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      FunctionName: DeleteMovies
+      Description: Delete movies into DB
+      CodeUri: ms-movies/
+      Handler: deleteMovies.lambdaHandler
+      Runtime: nodejs12.x
+      Timeout: 30
+      Environment:
+        Variables:
+          DB_HOST: host.docker.internal #Change the HOST for the server in production
+      Events:
+        DeleteMoviesApi:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /movie
+            Method: delete
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -39,7 +90,28 @@ Outputs:
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   GetMoviesApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/getMovies/"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/movie/list/"
   MoviesFunction:
     Description: "Get all movies Function ARN"
     Value: !GetAtt GetMoviesFunction.Arn
+
+  CreateMoviesApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/movie/"
+  CreateMoviesFunction:
+    Description: "Create movies Function ARN"
+    Value: !GetAtt CreateMoviesFunction.Arn
+
+  UpdateMoviesApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/movie/"
+  UpdateMoviesFunction:
+    Description: "Update movies Function ARN"
+    Value: !GetAtt UpdateMoviesFunction.Arn
+
+  DeleteMoviesApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/movie/"
+  DeleteMoviesFunction:
+    Description: "Delete movies Function ARN"
+    Value: !GetAtt DeleteMoviesFunction.Arn

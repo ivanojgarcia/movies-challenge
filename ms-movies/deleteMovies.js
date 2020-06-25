@@ -18,21 +18,40 @@ let response;
  */
 exports.lambdaHandler = async (event, context) => {
     try {
-        const getAllMovies = await movie.findAll({
-            order: [
-                ["id", "DESC"]
-            ]
-        }); 
+        let res = {};
+        const {id} = event.queryStringParameters;
+        
+
+        let deleteMovie = await movie.destroy({ 
+            where: {
+                id
+            }
+         });
+         if(deleteMovie){
+            res = {
+                message: `Movie with ID ${id} deleted.`
+            }
+         }else{
+            res = {
+                message: `Movie with ID ${id} not found.`
+            }
+         }
         response = {
             'statusCode': 200,
             'body': JSON.stringify({
-                data: getAllMovies
+                data: res
                 // location: ret.data.trim()
             })
         }
     } catch (err) {
         console.log(err);
-        return err;
+        response = {
+            'statusCode': 500,
+            'body': JSON.stringify({
+                error: err
+                // location: ret.data.trim()
+            })
+        }
     }
 
     return response

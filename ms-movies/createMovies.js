@@ -18,21 +18,41 @@ let response;
  */
 exports.lambdaHandler = async (event, context) => {
     try {
-        const getAllMovies = await movie.findAll({
-            order: [
-                ["id", "DESC"]
-            ]
-        }); 
+        const body = JSON.parse(event.body) ;
+
+        let createMovie = await movie.create({ 
+            title: body.title,
+            year: body.year,
+            age: body.age,
+            IMdb: body.IMdb,
+            rottenTomatoes: body.rottenTomatoes,
+            netflix: body.netflix,
+            hulu: body.hulu,
+            primeVideo: body.primeVideo,
+            disneyPlus: body.disneyPlus,
+            type: body.type,
+            directors: body.directors,
+            genres: body.genres,
+            country: body.country,
+            language: body.language,
+            runtime: body.runtime
+         });
         response = {
             'statusCode': 200,
             'body': JSON.stringify({
-                data: getAllMovies
+                data: createMovie
                 // location: ret.data.trim()
             })
         }
     } catch (err) {
         console.log(err);
-        return err;
+        response = {
+            'statusCode': 500,
+            'body': JSON.stringify({
+                error: err
+                // location: ret.data.trim()
+            })
+        }
     }
 
     return response
