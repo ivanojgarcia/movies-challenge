@@ -47,6 +47,45 @@ It's possible thank to Sequelize ORM, installed in our services. For this is nec
 
 > **Note**: You must be into the folder or directory **ms-movies** to make it work
 
+Before execute the commands, you must configure the config.json file, this file has in the next route **movies-challenge/ms-movies/config/config.json**, with this configuration you can run the services in your local machine.
+
+You can to take this example Json:
+  
+
+      {
+	    "development": {
+		    "username": "yapp-user-challenge",
+		    "password": "yappChallenge",
+		    "database": "yapp-app",
+		    "host": "127.0.0.1",
+		    "port": "3306",
+		    "dialect": "mysql"
+	    },
+	    "test": {
+		    "username": "yapp-user-challenge",
+		    "password": "yappChallenge",
+		    "database": "yapp-app",
+		    "host": "127.0.0.1",
+		    "port": "3306",
+		    "dialect": "mysql"
+	    },
+	    "production": {
+		    "username": "yapp-user-challenge",
+		    "password": "yappChallenge",
+		    "database": "yapp-app",
+		    "host": "127.0.0.1",
+		    "port": "3306",
+		    "dialect": "mysql"
+	    }
+    }
+
+ 
+
+> **Important:** You must to change the values **username**, **password**, **host** and **port** by your values or information of Database,.
+> You can leave the name of the DB, this is because the scripts created it for you.
+
+All is ready for start and execute the scripts
+
 **For create our DB:**
 
     $~ npm run create:db
@@ -57,3 +96,9 @@ It's possible thank to Sequelize ORM, installed in our services. For this is nec
 **For inject data:**
 
     $~ npm run seed:all
+
+Congratulations you are ready for start!
+
+## Configure the service for run in your local machine
+
+SAM needs docker to be able to run locally, 
