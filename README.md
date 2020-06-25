@@ -1,6 +1,6 @@
 # Welcome to Movies Challenge!
 
-Hi, this is a services to see all movies from the best platforms as Netflix, Prime Video and Disney Plus.
+Hi, these is a services to see all movies from the best platforms as Netflix, Prime Video and Disney Plus.
 You can Get, Create, Update and Delete a movie.
 This service is developed in AWS SAM.
 
